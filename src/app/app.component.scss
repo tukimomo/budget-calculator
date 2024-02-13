@@ -1,0 +1,19 @@
+.transaction-table {
+    &__footer {
+        position: sticky;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        text-align: end;
+        background-color: var(--primary-color);
+        color: var(--primary-color-text)
+    }
+
+    table {
+        width: calc(100%/2);
+    }
+
+    td {
+        width: calc(100% / 4);
+    }
+}

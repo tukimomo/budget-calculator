@@ -1,0 +1,15 @@
+<form class="transaction-form flex-row flex-grow-1 justify-content-between" [formGroup]="transactionForm">
+    <div class="flex flex-wrap mb-3">
+        <p-selectButton [options]="transactionTypes" formControlName="type" [multiple]="false" optionLabel="label" optionValue="value"></p-selectButton>
+    </div>
+    <div class="flex-column flex mb-3">
+        <label class="mb-3" for="name">Name</label>
+        <input formControlName="name" pInputText id="name" />
+    </div>
+    <div class="flex-column flex mb-3">
+        <label class="mb-3" for="amount">Amount</label>
+        <p-inputNumber class="transaction-form__amount-input" styleClass="w-full" formControlName="amount" id="amount" />
+    </div>
+    <button class="w-full" [disabled]="transactionForm.invalid" pButton label="Add" type="submit"
+        (click)="onSaveTransaction()"></button>
+</form>
