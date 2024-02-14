@@ -1,43 +1,46 @@
-<div class="flex flex-column transaction-table">
-  <p-toolbar styleClass="mb-4">
-    <app-transaction-form class="flex flex-grow-1" (saveEvent)="add($event)" />
-  </p-toolbar>
+<div class="mr-3 ml-3">
+  <h1>Budget Calculator</h1>
+  <div class="grid transaction-table">
+    <p-toolbar class="mb-4 col-12 lg:col-4">
+      <app-transaction-form class="flex flex-grow-1" (saveEvent)="add($event)" />
+    </p-toolbar>
 
-  <div class="flex flex-column align-items-stretch">
-    <p-table [value]="incomeTransactions" class="flex-grow-1">
-      <ng-template pTemplate="caption">
-        Income
-      </ng-template>
+    <div class="lg:col-8 col-12 transaction-table__content mb-8 flex-column align-items-stretch">
+      <p-table [value]="incomeTransactions" class="flex-grow-1">
+        <ng-template pTemplate="caption">
+          Income
+        </ng-template>
 
-      <ng-template pTemplate="body" let-transaction let-rowIndex="rowIndex">
-        <tr>
-          <td>{{ rowIndex + 1 }}</td>
-          <td>{{ transaction.name }}</td>
-          <td>{{ transaction.amount | number: '.2' }}</td>
-          <td>
-            <p-button icon="pi pi-trash" [outlined]="true" (click)="delete(transaction)"></p-button>
-          </td>
-        </tr>
-      </ng-template>
-    </p-table>
+        <ng-template pTemplate="body" let-transaction let-rowIndex="rowIndex">
+          <tr>
+            <td class="index">{{ rowIndex + 1 }}</td>
+            <td class="name overflow-hidden text-overflow-ellipsis">{{ transaction.name }}</td>
+            <td class="text-right">{{ transaction.amount | number: '.2' }}</td>
+            <td class="text-right">
+              <p-button icon="pi pi-trash" [outlined]="true" (click)="delete(transaction)"></p-button>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
 
-    <p-table [value]="expenseTransactions" class="flex-grow-1">
-      <ng-template pTemplate="caption">
-        Expense
-      </ng-template>
-      <ng-template pTemplate="body" let-transaction let-rowIndex="rowIndex">
-        <tr>
-          <td>{{ rowIndex + 1 }}</td>
-          <td>{{ transaction.name }}</td>
-          <td>{{ transaction.amount | number: '.2' }}</td>
-          <td>
-            <p-button icon="pi pi-trash" [outlined]="true" (click)="delete(transaction)"></p-button>
-          </td>
-        </tr>
-      </ng-template>
-    </p-table>
-  </div>
-  <div class="transaction-table__footer p-3">
-    <h3>Total remaining: {{ totalRemaining }}</h3>
+      <p-table [value]="expenseTransactions" class="flex-grow-1">
+        <ng-template pTemplate="caption">
+          Expense
+        </ng-template>
+        <ng-template pTemplate="body" let-transaction let-rowIndex="rowIndex">
+          <tr>
+            <td class="index">{{ rowIndex + 1 }}</td>
+            <td class="name overflow-hidden text-overflow-ellipsis">{{ transaction.name }}</td>
+            <td class="text-right">{{ transaction.amount | number: '.2' }}</td>
+            <td class="text-right">
+              <p-button icon="pi pi-trash" [outlined]="true" (click)="delete(transaction)"></p-button>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+    <div class="transaction-table__footer p-3 pl-5 pr-5">
+      <h3>Total remaining: {{ totalRemaining }}</h3>
+    </div>
   </div>
 </div>
