@@ -13,7 +13,7 @@
         <tr>
           <td>{{ rowIndex + 1 }}</td>
           <td>{{ transaction.name }}</td>
-          <td>{{ transaction.amount }}</td>
+          <td>{{ transaction.amount | number: '.2' }}</td>
           <td>
             <p-button icon="pi pi-trash" [outlined]="true" (click)="delete(transaction)"></p-button>
           </td>
@@ -29,7 +29,7 @@
         <tr>
           <td>{{ rowIndex + 1 }}</td>
           <td>{{ transaction.name }}</td>
-          <td>{{ transaction.amount }}</td>
+          <td>{{ transaction.amount | number: '.2' }}</td>
           <td>
             <p-button icon="pi pi-trash" [outlined]="true" (click)="delete(transaction)"></p-button>
           </td>
