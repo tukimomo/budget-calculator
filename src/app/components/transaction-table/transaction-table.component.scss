@@ -1,0 +1,28 @@
+.transaction-table {
+    &__footer {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        text-align: end;
+        background-color: var(--primary-color);
+        color: var(--primary-color-text)
+    }
+
+    table {
+        width: calc(100%/2);
+    }
+
+    td {
+        &.index {
+            width: 0.125rem;
+        }
+        width: calc(100% / 4);
+    }
+
+    @media only screen and (max-width: 600px) {
+        td.name {
+            max-width: 0.5rem;
+        }
+    }
+}

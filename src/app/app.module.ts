@@ -13,11 +13,13 @@ import { RadioButtonModule } from 'primeng/radiobutton';
 import { TransactionFormComponent } from './components/transaction-form/transaction-form.component';
 import { TransactionTypePipe } from './transaction-type.pipe';
 import { SelectButtonModule } from 'primeng/selectbutton';
+import { TransactionTableComponent } from './components/transaction-table/transaction-table.component';
 @NgModule({
   declarations: [
     AppComponent,
     TransactionFormComponent,
     TransactionTypePipe,
+    TransactionTableComponent,
   ],
   imports: [
     BrowserModule,
