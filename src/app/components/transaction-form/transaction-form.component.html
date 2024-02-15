@@ -1,6 +1,6 @@
 <form class="transaction-form flex-row flex-grow-1 justify-content-between" [formGroup]="transactionForm">
     <div class="flex flex-wrap mb-3">
-        <p-selectButton [options]="transactionTypes" formControlName="type" [multiple]="false" optionLabel="label" optionValue="value"></p-selectButton>
+        <p-selectButton id="typeSelection" [options]="transactionTypes" formControlName="type" [multiple]="false" optionLabel="label" optionValue="value"></p-selectButton>
     </div>
     <div class="flex-column flex mb-3">
         <label class="mb-3" for="name">Name</label>
@@ -10,6 +10,6 @@
         <label class="mb-3" for="amount">Amount</label>
         <p-inputNumber mode="decimal" [minFractionDigits]="2" [maxFractionDigits]="5" class="transaction-form__amount-input" styleClass="w-full" formControlName="amount" id="amount" />
     </div>
-    <button class="w-full" [disabled]="transactionForm.invalid" pButton label="Add" type="submit"
+    <button id="saveButton" class="w-full" [disabled]="transactionForm.invalid" pButton label="Add" type="submit"
         (click)="onSaveTransaction()"></button>
 </form>

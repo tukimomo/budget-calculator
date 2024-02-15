@@ -1,7 +1,8 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Output, inject } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Transaction, TransactionType } from '../../models/transaction';
 import {v4 as uuidv4} from 'uuid';
+import { UuidGeneratorService } from '../../services/uuid-generator.service';
 
 @Component({
   selector: 'app-transaction-form',
@@ -11,7 +12,7 @@ import {v4 as uuidv4} from 'uuid';
 export class TransactionFormComponent {
   @Output()
   saveEvent = new EventEmitter<Transaction>();
-
+  uuidGeneratorService = inject(UuidGeneratorService);
   transactionTypes = [
     { value: TransactionType.EXPENSE, label: "EXPENSE" },
     { value: TransactionType.INCOME, label: "INCOME" }
@@ -24,7 +25,7 @@ export class TransactionFormComponent {
 
   onSaveTransaction() {
     const transaction: Transaction = {
-      id: uuidv4(),
+      id: this.uuidGeneratorService.v4(),
       name: this.transactionForm.get("name")?.value!,
       amount: this.transactionForm.get("amount")?.value || 0,
       type: this.transactionForm.get("type")?.value!
