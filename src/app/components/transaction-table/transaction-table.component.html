@@ -4,40 +4,10 @@
     </p-toolbar>
 
     <div class="lg:col-8 col-12 transaction-table__content mb-8 flex-column align-items-stretch">
-        <p-table [value]="incomeTransactions" class="flex-grow-1">
-            <ng-template pTemplate="caption">
-                Income
-            </ng-template>
-
-            <ng-template pTemplate="body" let-transaction let-rowIndex="rowIndex">
-                <tr>
-                    <td class="index">{{ rowIndex + 1 }}</td>
-                    <td class="name overflow-hidden text-overflow-ellipsis">{{ transaction.name }}</td>
-                    <td class="text-right">{{ transaction.amount | number: '.2' }}</td>
-                    <td class="text-right">
-                        <p-button icon="pi pi-trash" [outlined]="true" (click)="delete(transaction)"></p-button>
-                    </td>
-                </tr>
-            </ng-template>
-        </p-table>
-
-        <p-table [value]="expenseTransactions" class="flex-grow-1">
-            <ng-template pTemplate="caption">
-                Expense
-            </ng-template>
-            <ng-template pTemplate="body" let-transaction let-rowIndex="rowIndex">
-                <tr>
-                    <td class="index">{{ rowIndex + 1 }}</td>
-                    <td class="name overflow-hidden text-overflow-ellipsis">{{ transaction.name }}</td>
-                    <td class="text-right">{{ transaction.amount | number: '.2' }}</td>
-                    <td class="text-right">
-                        <p-button icon="pi pi-trash" [outlined]="true" (click)="delete(transaction)"></p-button>
-                    </td>
-                </tr>
-            </ng-template>
-        </p-table>
+        <app-table-wrapper title="Income" [transactions]="incomeTransactions" (deleteEvent)="delete($event)" />
+        <app-table-wrapper title="Expense" [transactions]="expenseTransactions" (deleteEvent)="delete($event)" />
     </div>
     <div class="transaction-table__footer p-3 pl-5 pr-5">
-        <h3>Total remaining: {{ totalRemaining }}</h3>
+        <h3>Total remaining: {{ totalRemaining | number: '.2' }}</h3>
     </div>
 </div>

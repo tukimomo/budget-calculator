@@ -14,12 +14,14 @@ import { TransactionFormComponent } from './components/transaction-form/transact
 import { TransactionTypePipe } from './transaction-type.pipe';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { TransactionTableComponent } from './components/transaction-table/transaction-table.component';
+import { TableWrapperComponent } from './components/transaction-table/table-wrapper/table-wrapper.component';
 @NgModule({
   declarations: [
     AppComponent,
     TransactionFormComponent,
     TransactionTypePipe,
     TransactionTableComponent,
+    TableWrapperComponent,
   ],
   imports: [
     BrowserModule,

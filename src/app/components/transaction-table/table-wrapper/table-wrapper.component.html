@@ -1,0 +1,24 @@
+<p-table [value]="transactions" class="flex-grow-1">
+    <ng-template pTemplate="caption">
+        {{title}}
+    </ng-template>
+
+    <ng-template pTemplate="body" let-transaction let-rowIndex="rowIndex">
+        <tr>
+            <td class="index">{{ rowIndex + 1 }}</td>
+            <td class="name overflow-hidden text-overflow-ellipsis">{{ transaction.name }}</td>
+            <td class="text-right">{{ transaction.amount | number: '.2' }}</td>
+            <td class="text-right">
+                <p-button id="deleteButton" icon="pi pi-trash" [outlined]="true" (click)="delete(transaction)"></p-button>
+            </td>
+        </tr>
+    </ng-template>
+
+    <ng-template pTemplate="footer">
+        <ng-container *ngIf="transactions.length === 0">
+            <td id="emptyMessageRow" class="p-3">
+                <tr>No data</tr>
+            </td>
+        </ng-container>
+    </ng-template>
+</p-table>

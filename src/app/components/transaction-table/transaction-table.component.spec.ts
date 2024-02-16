@@ -10,6 +10,7 @@ import { SelectButtonModule } from 'primeng/selectbutton';
 import { TableModule } from 'primeng/table';
 import { ToolbarModule } from 'primeng/toolbar';
 import { TransactionFormComponent } from '../transaction-form/transaction-form.component';
+import { TableWrapperComponent } from './table-wrapper/table-wrapper.component';
 
 describe('TransactionTableComponent', () => {
   let component: TransactionTableComponent;
@@ -17,7 +18,7 @@ describe('TransactionTableComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [TransactionTableComponent, TransactionFormComponent],
+      declarations: [TransactionTableComponent, TransactionFormComponent, TableWrapperComponent],
       imports: [
         ToolbarModule,
         TableModule,
@@ -25,11 +26,11 @@ describe('TransactionTableComponent', () => {
         InputTextModule,
         SelectButtonModule,
         ReactiveFormsModule,
-        ButtonModule
+        ButtonModule,
       ]
     })
-    .compileComponents();
-    
+      .compileComponents();
+
     fixture = TestBed.createComponent(TransactionTableComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
@@ -40,40 +41,34 @@ describe('TransactionTableComponent', () => {
   });
 
   it('should add the income when giving income transaction', () => {
-    const fixture = TestBed.createComponent(TransactionTableComponent);
-    const app = fixture.componentInstance;
     const mockIncomeTransaction = {
       id: 'mock id',
       name: 'income',
       amount: 1000,
       type: TransactionType.INCOME
     }
-    app.add(mockIncomeTransaction)
+    component.add(mockIncomeTransaction)
     fixture.detectChanges()
-    expect(app.incomeTransactions.includes(mockIncomeTransaction)).toBeTruthy();
-    expect(app.expenseTransactions.includes(mockIncomeTransaction)).toBeFalsy();
-    expect(app.totalRemaining).toBe(1000);
+    expect(component.incomeTransactions.includes(mockIncomeTransaction)).toBeTruthy();
+    expect(component.expenseTransactions.includes(mockIncomeTransaction)).toBeFalsy();
+    expect(component.totalRemaining).toBe(1000);
   });
 
   it('should add the expense when giving expense transaction', () => {
-    const fixture = TestBed.createComponent(TransactionTableComponent);
-    const app = fixture.componentInstance;
     const mockExpenseTransaction = {
       id: 'mock id',
       name: 'expense',
       amount: 1000,
       type: TransactionType.EXPENSE
     }
-    app.add(mockExpenseTransaction)
+    component.add(mockExpenseTransaction)
     fixture.detectChanges()
-    expect(app.incomeTransactions.includes(mockExpenseTransaction)).toBeFalsy();
-    expect(app.expenseTransactions.includes(mockExpenseTransaction)).toBeTruthy();
-    expect(app.totalRemaining).toBe(-1000);
+    expect(component.incomeTransactions.includes(mockExpenseTransaction)).toBeFalsy();
+    expect(component.expenseTransactions.includes(mockExpenseTransaction)).toBeTruthy();
+    expect(component.totalRemaining).toBe(-1000);
   })
 
   it('should return total remaining equal to total income minus total expense when giving income and expense transactions', () => {
-    const fixture = TestBed.createComponent(TransactionTableComponent);
-    const app = fixture.componentInstance;
     const mockIncomeTransaction = {
       id: 'mock id 1',
       name: 'income',
@@ -86,25 +81,21 @@ describe('TransactionTableComponent', () => {
       amount: 400,
       type: TransactionType.EXPENSE
     }
-    app.add(mockIncomeTransaction)
-    app.add(mockExpenseTransaction)
+    component.add(mockIncomeTransaction)
+    component.add(mockExpenseTransaction)
     fixture.detectChanges()
-    expect(app.incomeTransactions.includes(mockIncomeTransaction)).toBeTruthy();
-    expect(app.expenseTransactions.includes(mockExpenseTransaction)).toBeTruthy();
-    expect(app.totalRemaining).toBe(600);
+    expect(component.incomeTransactions.includes(mockIncomeTransaction)).toBeTruthy();
+    expect(component.expenseTransactions.includes(mockExpenseTransaction)).toBeTruthy();
+    expect(component.totalRemaining).toBe(600);
   })
 
   it('should return total remaining equal to 0 when income and expense list are all empty', () => {
-    const fixture = TestBed.createComponent(TransactionTableComponent);
-    const app = fixture.componentInstance;
-    expect(app.incomeTransactions.length).toBe(0);
-    expect(app.expenseTransactions.length).toBe(0);
-    expect(app.totalRemaining).toBe(0);
+    expect(component.incomeTransactions.length).toBe(0);
+    expect(component.expenseTransactions.length).toBe(0);
+    expect(component.totalRemaining).toBe(0);
   });
 
   it('should remove income transaction out the list when delete income transaction', () => {
-    const fixture = TestBed.createComponent(TransactionTableComponent);
-    const app = fixture.componentInstance;
     const mockIncomeTransaction = {
       id: 'mock id 1',
       name: 'income',
@@ -117,12 +108,12 @@ describe('TransactionTableComponent', () => {
       amount: 400,
       type: TransactionType.EXPENSE
     }
-    app.add(mockIncomeTransaction);
-    app.add(mockExpenseTransaction);
-    app.delete(mockIncomeTransaction);
+    component.add(mockIncomeTransaction);
+    component.add(mockExpenseTransaction);
+    component.delete(mockIncomeTransaction);
     fixture.detectChanges();
 
-    expect(app.incomeTransactions.length).toEqual(0);
-    expect(app.totalRemaining).toBe(-400);
+    expect(component.incomeTransactions.length).toEqual(0);
+    expect(component.totalRemaining).toBe(-400);
   });
 });

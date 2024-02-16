@@ -11,6 +11,7 @@ import { SelectButtonModule } from 'primeng/selectbutton';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { TransactionTableComponent } from './components/transaction-table/transaction-table.component';
+import { TableWrapperComponent } from './components/transaction-table/table-wrapper/table-wrapper.component';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
@@ -31,6 +32,7 @@ describe('AppComponent', () => {
         TransactionTypePipe,
         TransactionTableComponent,
         TransactionFormComponent,
+        TableWrapperComponent
       ],
     }).compileComponents();
   });
